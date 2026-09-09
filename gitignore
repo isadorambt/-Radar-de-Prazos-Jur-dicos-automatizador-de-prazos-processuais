@@ -1,0 +1,14 @@
+# Nunca subir dados reais de processos para o repositório público
+processos.csv
+
+# Arquivos de ambiente com credenciais (caso algum dia use um .env)
+.env
+*.env
+
+# Arquivos do Python
+__pycache__/
+*.pyc
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db

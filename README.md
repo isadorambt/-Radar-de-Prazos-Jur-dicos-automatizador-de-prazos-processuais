@@ -53,7 +53,6 @@ python3 radar_prazos_v1.py
 
 4. O programa vai perguntar a data de início do prazo e o número de dias úteis. Exemplo:
 
-```
 === Radar de Prazos Jurídicos (V1) ===
 
 Data de início do prazo (DD/MM/AAAA): 01/09/2026
@@ -61,7 +60,7 @@ Prazo em dias úteis: 15
 
 📅 Prazo final: 23/09/2026
 ⏳ Faltam 14 dias corridos até o vencimento.
-```
+
 
 <details>
 <summary><h2>📊 V2 — vários processos de uma vez</h2></summary>
@@ -72,11 +71,10 @@ A partir da V2, é possível ler vários processos de uma planilha (`processos.c
 
 O arquivo `processos.csv` precisa ter as colunas `processo`, `data_inicio` e `dias_uteis`:
 
-```
 processo,data_inicio,dias_uteis
 0001234-56.2025.8.25.0001,01/09/2026,5
 0007891-23.2025.8.25.0002,03/09/2026,15
-```
+
 
 ### Como rodar
 

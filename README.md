@@ -35,27 +35,110 @@ python3 radar_prazos_v1.py
 ```
 
 4. O programa vai perguntar a data de início do prazo e o número de dias úteis. Exemplo:
-
-```
-=== Radar de Prazos Jurídicos (V1) ===
+5. === Radar de Prazos Jurídicos (V1) ===
 
 Data de início do prazo (DD/MM/AAAA): 01/09/2026
 Prazo em dias úteis: 15
 
 📅 Prazo final: 23/09/2026
 ⏳ Faltam 14 dias corridos até o vencimento.
+
+
+## 📊 V2 — vários processos de uma vez
+
+A partir da V2, é possível ler vários processos de uma planilha (`processos.csv`) e ver todos ordenados por urgência.
+
+### Formato da planilha
+
+O arquivo `processos.csv` precisa ter as colunas `processo`, `data_inicio` e `dias_uteis`:
+
+processo,data_inicio,dias_uteis
+0001234-56.2025.8.25.0001,01/09/2026,5
+0007891-23.2025.8.25.0002,03/09/2026,15
+
+
+### Como rodar
+
+1. Coloque `radar_prazos_v2.py` e `processos.csv` na mesma pasta.
+2. Edite o `processos.csv` com seus processos reais.
+3. Rode:
+
+```bash
+python3 radar_prazos_v2.py
 ```
+
+O resultado aparece ordenado do prazo mais urgente para o menos urgente, com emojis indicando o nível de atenção (🔴 muito urgente, 🟡 atenção, 🟢 tranquilo, ❌ já venceu).
+
+## 📧 V3 — alertas automáticos por e-mail
+
+A partir da V3, o script verifica os processos e envia um e-mail automático de alerta para os que estão com prazo próximo do vencimento (padrão: 3 dias ou menos).
+
+### Configuração de e-mail (uma vez só)
+
+Por segurança, as credenciais de e-mail **não** ficam no código — elas são lidas de variáveis de ambiente.
+
+1. Ative a verificação em duas etapas na sua conta Google, em [myaccount.google.com/security](https://myaccount.google.com/security).
+2. Gere uma senha de app em [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords).
+3. Antes de rodar o script, defina as variáveis no terminal:
+
+**Mac/Linux:**
+```bash
+export EMAIL_REMETENTE="seuemail@gmail.com"
+export EMAIL_SENHA_APP="a senha de 16 letras gerada pelo Google"
+```
+
+**Windows (cmd):**
+```cmd
+set EMAIL_REMETENTE=seuemail@gmail.com
+set EMAIL_SENHA_APP=a senha de 16 letras gerada pelo Google
+```
+
+> ⚠️ Nunca coloque sua senha normal do Gmail ou a senha de app diretamente no código — use sempre variáveis de ambiente, como mostrado acima.
+
+### Como rodar
+
+1. Coloque `radar_prazos_v3.py` e `processos.csv` na mesma pasta.
+2. Configure as variáveis de ambiente (passo acima).
+3. Rode, no mesmo terminal:
+
+```bash
+python3 radar_prazos_v3.py
+```
+
+Se algum processo estiver com prazo de 3 dias ou menos, você recebe um e-mail automático com a lista. Se não houver nada urgente, o script apenas avisa no terminal e não envia e-mail.
+
+## 🖥️ V4 — interface visual (Streamlit)
+
+A partir da V4, existe uma telinha visual para consultar e cadastrar processos direto no navegador, sem precisar mexer no terminal ou editar o CSV manualmente.
+
+### Como rodar
+
+1. Instale as bibliotecas necessárias (uma vez só):
+
+```bash
+pip install streamlit pandas
+```
+
+2. Coloque `radar_prazos_v4.py` e `processos.csv` na mesma pasta.
+3. Rode:
+
+```bash
+streamlit run radar_prazos_v4.py
+```
+
+4. Uma aba abre automaticamente no navegador (geralmente em `http://localhost:8501`) mostrando a lista de processos ordenada por urgência e um formulário para cadastrar novos processos sem precisar editar o CSV na mão.
 
 ## 🗺️ Próximos passos (roadmap)
 
-- [ ] **V2:** ler vários processos de uma planilha de uma vez.
-- [ ] **V3:** enviar alertas automáticos por e-mail ou Telegram quando um prazo estiver próximo do vencimento.
-- [ ] **V4:** interface visual simples (com Streamlit) para consultar os prazos sem precisar mexer no código.
+- [x] **V2:** ler vários processos de uma planilha de uma vez.
+- [x] **V3:** enviar alertas automáticos por e-mail quando um prazo estiver próximo do vencimento.
+- [x] **V4:** interface visual simples (com Streamlit) para consultar os prazos sem precisar mexer no código.
 
 ## 🛠️ Tecnologias
 
 - Python 3
-- Módulo `datetime` (nativo do Python)
+- Módulos nativos: `datetime`, `csv`, `smtplib`, `email`, `os`
+- Bibliotecas externas: `streamlit`, `pandas`
 
 ## 👩‍💻 Autora
 

@@ -52,14 +52,16 @@ python3 radar_prazos_v1.py
 ```
 
 4. O programa vai perguntar a data de início do prazo e o número de dias úteis. Exemplo:
-5. === Radar de Prazos Jurídicos (V1) ===
+
+```
+=== Radar de Prazos Jurídicos (V1) ===
 
 Data de início do prazo (DD/MM/AAAA): 01/09/2026
 Prazo em dias úteis: 15
 
 📅 Prazo final: 23/09/2026
 ⏳ Faltam 14 dias corridos até o vencimento.
-
+```
 
 <details>
 <summary><h2>📊 V2 — vários processos de uma vez</h2></summary>
@@ -70,15 +72,16 @@ A partir da V2, é possível ler vários processos de uma planilha (`processos.c
 
 O arquivo `processos.csv` precisa ter as colunas `processo`, `data_inicio` e `dias_uteis`:
 
+```
 processo,data_inicio,dias_uteis
 0001234-56.2025.8.25.0001,01/09/2026,5
 0007891-23.2025.8.25.0002,03/09/2026,15
-
+```
 
 ### Como rodar
 
-1. Coloque `radar_prazos_v2.py` e `processos.csv` na mesma pasta.
-2. Edite o `processos.csv` com seus processos reais.
+1. Coloque `radar_prazos_v2.py` na mesma pasta do `processos.exemplo.csv`.
+2. Faça uma cópia do `processos.exemplo.csv`, renomeie para `processos.csv` e edite com seus processos reais (esse arquivo não é enviado ao GitHub, veja a seção [Segurança e privacidade](#-segurança-e-privacidade)).
 3. Rode:
 
 ```bash
@@ -153,6 +156,18 @@ streamlit run radar_prazos_v4.py
 4. Uma aba abre automaticamente no navegador (geralmente em `http://localhost:8501`) mostrando a lista de processos ordenada por urgência e um formulário para cadastrar novos processos sem precisar editar o CSV na mão.
 
 </details>
+
+## 🔒 Segurança e privacidade
+
+Como este projeto lida com dados de processos jurídicos, alguns cuidados são levados a sério:
+
+- **Nenhuma credencial fica no código.** As credenciais de e-mail (V3) são lidas de variáveis de ambiente, nunca escritas no código-fonte — assim, mesmo o repositório sendo público, ninguém tem acesso à sua senha.
+- **Dados reais de processos não são versionados.** O arquivo `processos.csv` está no `.gitignore`, ou seja, o Git ignora esse arquivo e ele nunca é enviado ao GitHub. O que fica público é só o `processos.exemplo.csv`, com dados fictícios — o `processos.csv` com processos reais existe apenas no seu computador.
+- **Sigilo profissional.** Números de processo, nomes de partes e outros dados sensíveis nunca devem ir para um repositório público. Se algum dia quiser compartilhar este projeto com dados reais, use um repositório **privado** no GitHub, não um público.
+- **Instalação seguindo boas práticas.** As bibliotecas usadas (`streamlit`, `pandas`) são instaladas via `pip` diretamente do repositório oficial do Python (PyPI) — evite instalar pacotes de fontes desconhecidas ou copiar comandos de instalação de sites não confiáveis.
+- **Interface local.** A telinha da V4 (Streamlit) roda apenas no seu computador (`localhost`) — ela não fica exposta na internet, só você tem acesso enquanto o comando estiver rodando.
+
+> ⚠️ Se você já subiu algum `processos.csv` com dados reais antes de adicionar o `.gitignore`, ele pode continuar visível no histórico de commits do GitHub. Nesse caso, é importante removê-lo do histórico também — me avise que te ajudo com isso.
 
 ## 🗺️ Evolução do projeto
 

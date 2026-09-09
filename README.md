@@ -1,4 +1,4 @@
-# ⚖️ Radar de Prazos Jurídicos
+# ⚖️ Radar de Prazos Jurídicos Cíveis Comuns
 
 Um script em Python que calcula automaticamente a data final de um prazo processual, considerando dias úteis, feriados nacionais e o recesso forense.
 

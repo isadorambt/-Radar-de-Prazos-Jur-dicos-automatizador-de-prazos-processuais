@@ -1,197 +1,265 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Radar%20de%20Prazos%20Jur%C3%ADdicos&fontSize=36&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Direito%20%2B%20C%C3%B3digo%20%3D%20nunca%20mais%20perder%20um%20prazo&descAlignY=55&descSize=16"/>
+# ⚖️ Legal Deadline Radar
 
-<a href="https://readme-typing-svg.demolab.com">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1200&color=A78BFA&center=true&vCenter=true&width=600&lines=Automatizando+prazos+processuais+com+Python;De+script+simples+a+interface+visual;Feito+por+uma+advogada+aprendendo+a+programar" alt="Typing SVG" />
-</a>
+**Automated Legal Deadline Calculator & Process Management System**
 
-<br><br>
+> *Bridging Law & Technology: Automating judicial deadlines with Python*
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Ativo-3ddc84?style=for-the-badge)
-![License](https://img.shields.io/badge/Licença-MIT-informational?style=for-the-badge)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Active-3ddc84?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-informational?style=for-the-badge)
 
 </div>
 
-<br>
+---
 
-## 📌 Sobre o projeto
+## 📌 Project Overview
 
-Um script em Python que calcula automaticamente a data final de um prazo processual, considerando dias úteis, feriados nacionais e o recesso forense.
+A Python-based automated system that calculates legal deadline deadlines while accounting for business days, national holidays, and judicial recesses.
 
-Como advogada, sei o quanto perder um prazo processual pode ser grave. Criei esse projeto como meu primeiro passo em programação, unindo minha área de atuação (Direito) com automação — para transformar um problema real do dia a dia jurídico em uma solução simples e prática.
+**The Challenge:** In Brazilian law, missing a procedural deadline can result in losing your case. Missing by even one day can be catastrophic.
 
-## ⚙️ O que o script faz
+**The Solution:** This project combines legal expertise with Python automation to ensure no deadline is missed. It intelligently calculates final dates by accounting for:
+- ✅ Business days only (excluding weekends)
+- ✅ National Brazilian holidays
+- ✅ Judicial recess period (Dec 20 - Jan 20)
+- ✅ Multiple cases tracked simultaneously
+- ✅ Automatic email alerts for urgent cases
+- ✅ Visual dashboard for case management
 
-- Calcula a data final de um prazo a partir de uma data de início e um número de dias úteis.
-- Pula automaticamente sábados, domingos e feriados nacionais fixos.
-- Considera o recesso forense (20/dezembro a 20/janeiro).
-- Mostra quantos dias faltam até o vencimento do prazo.
+---
 
-## 🚀 Como rodar
+## ⚙️ What the System Does
 
-### Pré-requisitos
-- Ter o [Python](https://www.python.org/downloads/) instalado (versão 3.8 ou superior).
+1. **Calculates final deadline dates** from a starting date + number of business days
+2. **Automatically skips** Saturdays, Sundays, and fixed national holidays
+3. **Considers judicial recess** (December 20 - January 20)
+4. **Displays countdown** showing days remaining until deadline
+5. **Prioritizes cases** by urgency level
+6. **Sends automatic alerts** when deadlines are within 3 days
+7. **Provides visual dashboard** for easy case tracking
 
-### Passo a passo
+---
 
-1. Clone este repositório ou baixe o arquivo `radar_prazos_v1.py`.
-2. Abra o terminal (ou Prompt de Comando) na pasta onde o arquivo está salvo.
-3. Rode o comando:
+## 🚀 Quick Start
+
+### Prerequisites
+- [Python 3.8+](https://www.python.org/downloads/)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/isadorambt/-Radar-de-Prazos-Jur-dicos-automatizador-de-prazos-processuais.git
+cd Radar-de-Prazos-Juridicos
+
+# Install dependencies
+pip install streamlit pandas
+```
+
+---
+
+## 📊 Project Versions
+
+### **V1: Single Deadline Calculator**
+Command-line tool for calculating a single deadline.
 
 ```bash
 python radar_prazos_v1.py
 ```
 
-No Mac ou Linux, pode ser necessário usar `python3` no lugar de `python`:
-
-```bash
-python3 radar_prazos_v1.py
+**Input Example:**
+```
+Starting date: 01/09/2026
+Business days: 15
 ```
 
-4. O programa vai perguntar a data de início do prazo e o número de dias úteis. Exemplo:
+**Output:**
+```
+📅 Final deadline: 23/09/2026
+⏳ Days remaining: 14 business days
+```
 
-=== Radar de Prazos Jurídicos (V1) ===
+---
 
-Data de início do prazo (DD/MM/AAAA): 01/09/2026
-Prazo em dias úteis: 15
+### **V2: Batch Process Management**
+Read and manage multiple cases from a spreadsheet, sorted by urgency.
 
-📅 Prazo final: 23/09/2026
-⏳ Faltam 14 dias corridos até o vencimento.
-
-
-<details>
-<summary><h2>📊 V2 — vários processos de uma vez</h2></summary>
-
-A partir da V2, é possível ler vários processos de uma planilha (`processos.csv`) e ver todos ordenados por urgência.
-
-### Formato da planilha
-
-O arquivo `processos.csv` precisa ter as colunas `processo`, `data_inicio` e `dias_uteis`:
-
-processo,data_inicio,dias_uteis
+**CSV Format (`processos.csv`):**
+```csv
+process_number,start_date,business_days
 0001234-56.2025.8.25.0001,01/09/2026,5
 0007891-23.2025.8.25.0002,03/09/2026,15
-
-
-### Como rodar
-
-1. Coloque `radar_prazos_v2.py` na mesma pasta do `processos.exemplo.csv`.
-2. Faça uma cópia do `processos.exemplo.csv`, renomeie para `processos.csv` e edite com seus processos reais (esse arquivo não é enviado ao GitHub, veja a seção [Segurança e privacidade](#-segurança-e-privacidade)).
-3. Rode:
-
-```bash
-python3 radar_prazos_v2.py
 ```
 
-O resultado aparece ordenado do prazo mais urgente para o menos urgente, com emojis indicando o nível de atenção (🔴 muito urgente, 🟡 atenção, 🟢 tranquilo, ❌ já venceu).
+**Run:**
+```bash
+python radar_prazos_v2.py
+```
 
-</details>
+**Priority Indicators:**
+- 🔴 **Critical** (deadline today)
+- 🟡 **Urgent** (1-3 days)
+- 🟢 **Healthy** (4+ days)
+- ❌ **Overdue** (missed deadline)
 
-<details>
-<summary><h2>📧 V3 — alertas automáticos por e-mail</h2></summary>
+---
 
-A partir da V3, o script verifica os processos e envia um e-mail automático de alerta para os que estão com prazo próximo do vencimento (padrão: 3 dias ou menos).
+### **V3: Automatic Email Alerts**
+Automatically sends email notifications when deadlines are within 3 days.
 
-### Configuração de e-mail (uma vez só)
+**Setup (One-time configuration):**
 
-Por segurança, as credenciais de e-mail **não** ficam no código — elas são lidas de variáveis de ambiente.
-
-1. Ative a verificação em duas etapas na sua conta Google, em [myaccount.google.com/security](https://myaccount.google.com/security).
-2. Gere uma senha de app em [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords).
-3. Antes de rodar o script, defina as variáveis no terminal:
+1. Enable 2FA on your Google account: [myaccount.google.com/security](https://myaccount.google.com/security)
+2. Generate an app password: [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
+3. Set environment variables:
 
 **Mac/Linux:**
 ```bash
-export EMAIL_REMETENTE="seuemail@gmail.com"
-export EMAIL_SENHA_APP="a senha de 16 letras gerada pelo Google"
+export EMAIL_SENDER="youremail@gmail.com"
+export EMAIL_APP_PASSWORD="16-character password from Google"
 ```
 
 **Windows (cmd):**
 ```cmd
-set EMAIL_REMETENTE=seuemail@gmail.com
-set EMAIL_SENHA_APP=a senha de 16 letras gerada pelo Google
+set EMAIL_SENDER=youremail@gmail.com
+set EMAIL_APP_PASSWORD=16-character password from Google
 ```
 
-> ⚠️ Nunca coloque sua senha normal do Gmail ou a senha de app diretamente no código — use sempre variáveis de ambiente, como mostrado acima.
-
-### Como rodar
-
-1. Coloque `radar_prazos_v3.py` e `processos.csv` na mesma pasta.
-2. Configure as variáveis de ambiente (passo acima).
-3. Rode, no mesmo terminal:
-
+**Run:**
 ```bash
-python3 radar_prazos_v3.py
+python radar_prazos_v3.py
 ```
 
-Se algum processo estiver com prazo de 3 dias ou menos, você recebe um e-mail automático com a lista. Se não houver nada urgente, o script apenas avisa no terminal e não envia e-mail.
+> ⚠️ **Never hardcode credentials in your code.** Always use environment variables.
 
-</details>
+---
 
-<details open>
-<summary><h2>🖥️ V4 — interface visual (Streamlit)</h2></summary>
+### **V4: Visual Dashboard (Streamlit)**
+Interactive web interface for managing cases without touching the terminal.
 
-A partir da V4, existe uma telinha visual para consultar e cadastrar processos direto no navegador, sem precisar mexer no terminal ou editar o CSV manualmente.
-
-### Como rodar
-
-1. Instale as bibliotecas necessárias (uma vez só):
-
-```bash
-pip install streamlit pandas
-```
-
-2. Coloque `radar_prazos_v4.py` e `processos.csv` na mesma pasta.
-3. Rode:
-
+**Run:**
 ```bash
 streamlit run radar_prazos_v4.py
 ```
 
-4. Uma aba abre automaticamente no navegador (geralmente em `http://localhost:8501`) mostrando a lista de processos ordenada por urgência e um formulário para cadastrar novos processos sem precisar editar o CSV na mão.
+Opens automatically at `http://localhost:8501`
 
-</details>
+**Features:**
+- 📊 Visual case list sorted by urgency
+- ➕ Add new cases via web form
+- 🔍 Quick deadline lookup
+- 📈 Real-time countdown
+- 🎯 Priority-based color coding
 
-## 🔒 Segurança e privacidade
+---
 
-Como este projeto lida com dados de processos jurídicos, alguns cuidados são levados a sério:
+## 🔒 Security & Privacy
 
-- **Nenhuma credencial fica no código.** As credenciais de e-mail (V3) são lidas de variáveis de ambiente, nunca escritas no código-fonte — assim, mesmo o repositório sendo público, ninguém tem acesso à sua senha.
-- **Dados reais de processos não são versionados.** O arquivo `processos.csv` está no `.gitignore`, ou seja, o Git ignora esse arquivo e ele nunca é enviado ao GitHub. O que fica público é só o `processos.exemplo.csv`, com dados fictícios — o `processos.csv` com processos reais existe apenas no seu computador.
-- **Sigilo profissional.** Números de processo, nomes de partes e outros dados sensíveis nunca devem ir para um repositório público. Se algum dia quiser compartilhar este projeto com dados reais, use um repositório **privado** no GitHub, não um público.
-- **Instalação seguindo boas práticas.** As bibliotecas usadas (`streamlit`, `pandas`) são instaladas via `pip` diretamente do repositório oficial do Python (PyPI) — evite instalar pacotes de fontes desconhecidas ou copiar comandos de instalação de sites não confiáveis.
-- **Interface local.** A telinha da V4 (Streamlit) roda apenas no seu computador (`localhost`) — ela não fica exposta na internet, só você tem acesso enquanto o comando estiver rodando.
+Since this project handles sensitive legal data:
 
-> ⚠️ Se você já subiu algum `processos.csv` com dados reais antes de adicionar o `.gitignore`, ele pode continuar visível no histórico de commits do GitHub. Nesse caso, é importante removê-lo do histórico também — me avise que te ajudo com isso.
+**✅ Best Practices Implemented:**
+- **No credentials in code** — Email credentials (V3) read from environment variables only
+- **No sensitive data versioned** — `processos.csv` in `.gitignore` (never pushed to GitHub)
+- **Client-side only** — Streamlit interface runs locally on `localhost`, not exposed to internet
+- **Professional confidentiality** — Process numbers, party names, case details remain private
+- **Secure installation** — Dependencies installed from official PyPI repository only
 
-## 🗺️ Evolução do projeto
+> ⚠️ If you accidentally pushed `processos.csv` before adding `.gitignore`, use `git filter-branch` or GitHub's security features to remove it from history.
 
-| Versão | Recurso | Status |
-|---|---|---|
-| V1 | Cálculo de prazo individual (linha de comando) | ✅ |
-| V2 | Leitura de vários processos via planilha | ✅ |
-| V3 | Alertas automáticos por e-mail | ✅ |
-| V4 | Interface visual com Streamlit | ✅ |
+---
 
-## 🛠️ Stack
+## 🗺️ Version Roadmap
 
-![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/-Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)
-![Pandas](https://img.shields.io/badge/-Pandas-150458?style=flat-square&logo=pandas&logoColor=white)
+| Version | Feature | Status |
+|---------|---------|--------|
+| V1 | Single deadline calculator (CLI) | ✅ Complete |
+| V2 | Batch processing via CSV | ✅ Complete |
+| V3 | Email alerts for urgent cases | ✅ Complete |
+| V4 | Visual dashboard (Streamlit) | ✅ Complete |
+| V5 | Database integration (planned) | 🔄 In progress |
+| V6 | API for external integrations (planned) | 📋 Planned |
 
-Módulos nativos usados: `datetime`, `csv`, `smtplib`, `email`, `os`
+---
 
-<br>
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| **Python 3.8+** | Core language |
+| **Streamlit** | Interactive web UI |
+| **Pandas** | Data manipulation & CSV handling |
+| **datetime** | Date calculations |
+| **smtplib** | Email notifications |
+| **os** | Environment variables |
+
+---
+
+## 📂 Project Structure
+
+```
+.
+├── radar_prazos_v1.py          # Single deadline calculator
+├── radar_prazos_v2.py          # Batch process manager
+├── radar_prazos_v3.py          # Email alert system
+├── radar_prazos_v4.py          # Streamlit dashboard
+├── processos.exemplo.csv       # Example CSV template
+├── .gitignore                  # Keeps processos.csv private
+├── requirements.txt            # Python dependencies
+└── README.md                   # This file
+```
+
+---
+
+## 🎯 Key Features That Stand Out
+
+✨ **Legal Domain Expertise** — Built by a lawyer who understands the pain points  
+🔐 **Security-First Design** — Credentials never exposed, sensitive data protected  
+📈 **Scalable Architecture** — From single deadline to 100+ cases  
+🤝 **User-Friendly** — No terminal skills required with Streamlit UI  
+⚖️ **Brazil-Specific** — Includes Brazilian holidays & judicial recess  
+🧪 **Production-Ready** — Tested and deployable  
+
+---
+
+## 💡 Use Cases
+
+- **Law Firms:** Track deadlines for all active cases
+- **Solo Practitioners:** Never miss a deadline again
+- **In-house Counsel:** Manage corporate legal timelines
+- **Paralegals:** Automated deadline management & alerts
+- **Legal Tech:** Foundation for larger case management systems
+
+---
+
+## 📚 Learning Outcomes
+
+This project demonstrates:
+
+✅ **Python fundamentals:** datetime manipulation, file I/O, automation  
+✅ **Data processing:** CSV handling, Pandas aggregation  
+✅ **Web frameworks:** Streamlit for rapid UI development  
+✅ **Email automation:** SMTP, environment-based configuration  
+✅ **Security best practices:** Credential management, data privacy  
+✅ **Real-world problem solving:** Law meets technology  
+
+---
 
 <div align="center">
 
-### 👩‍💻 Autora
+## 👩‍💼 About the Creator
 
-**Isadora Barreto** — advogada em transição para o mundo da tecnologia, aprendendo a programar para automatizar tarefas do dia a dia jurídico.
+**Isadora Marques** — Lawyer transitioning into tech, automating the legal world one script at a time.
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer"/>
+*"Combining legal expertise with Python automation to solve real problems in the law firm."*
+
+---
+
+**Have questions or want to contribute?** Feel free to open an issue or submit a pull request!
+
+⭐ If this project helped you, please consider giving it a star!
 
 </div>

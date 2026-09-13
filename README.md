@@ -400,7 +400,7 @@ If you're hiring for:
 
 - 💼 [GitHub](https://github.com/isadorambt)
 - 📧 [Email](mailto:isadorambt@gmail.com)
-- 🔗 [LinkedIn](https://linkedin.com/in/isadora-marques) *(update with your actual link)*
+- 🔗 [LinkedIn](https://linkedin.com/in/isadora-marques)
 - 🐙 Open to questions, coffee chats, and opportunities!
 
 ---
